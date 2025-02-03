@@ -1,36 +1,40 @@
 package com.example.myPorra.service;
 
-import com.example.myPorra.model.Usuario;
-import com.example.myPorra.repository.UsuarioRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.example.myPorra.basic.service.UsuarioBasicService;
+import com.example.myPorra.dto.UsuarioDTO;
+import com.example.myPorra.mapper.UsuarioMapper;
+import com.example.myPorra.model.Usuario;
 
 @Service
 public class UsuarioService {
 
-    private final UsuarioRepository usuarioRepository;
+	@Autowired
+	private UsuarioBasicService usuarioBasicService;
 
-    @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
+	@Autowired
+	private UsuarioMapper usuarioMapper;
 
-    public List<Usuario> obtenerTodos() {
-        return usuarioRepository.findAll();
-    }
+	public List<UsuarioDTO> findAll() {
+		return this.usuarioMapper.mapListUsuarioToUsuarioDTO(this.usuarioBasicService.findAll());
+	}
 
-    public Optional<Usuario> obtenerPorId(Long id) {
-        return usuarioRepository.findById(id);
-    }
+	public UsuarioDTO findById(Long id) {
+		Optional<Usuario> usuarioOptional = this.usuarioBasicService.findById(id);
+		return usuarioOptional.map(this.usuarioMapper::mapUsuarioToUsuarioDTO).orElse(null);
+	}
 
-    public Usuario guardar(Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
+	public UsuarioDTO guardar(UsuarioDTO usuarioDto) {
+		Usuario entity = this.usuarioMapper.mapUsuarioDTOToUsuario(usuarioDto);
+		return this.usuarioMapper.mapUsuarioToUsuarioDTO(this.usuarioBasicService.guardar(entity));
+	}
 
-    public void eliminar(Long id) {
-        usuarioRepository.deleteById(id);
-    }
+	public void eliminar(Long id) {
+		this.usuarioBasicService.eliminar(id);
+	}
 }
