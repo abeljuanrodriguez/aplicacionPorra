@@ -14,21 +14,21 @@ public interface UsuarioMapper {
 	
     UsuarioMapper INSTANCE = Mappers.getMapper(UsuarioMapper.class);
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "nombre", source = "nombre")
-    @Mapping(target = "correo", source = "correo")
-    @Mapping(target = "edad", source = "edad")
-    @Mapping(target = "creadoEn", source = "creadoEn")
+    @Mapping(target = "id", source = "usuario.id")
+    @Mapping(target = "nombre", source = "usuario.nombre")
+    @Mapping(target = "correo", source = "usuario.correo")
+    @Mapping(target = "edad", source = "usuario.edad")
+    @Mapping(target = "creadoEn", source = "usuarioDTO.creadoEn")
     UsuarioDTO mapUsuarioToUsuarioDTO(Usuario usuario);
     
     List<UsuarioDTO> mapListUsuarioToUsuarioDTO(List<Usuario> listaUsuarios);
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "nombre", source = "nombre")
-    @Mapping(target = "correo", source = "correo")
-    @Mapping(target = "edad", source = "edad")
-    @Mapping(target = "creadoEn", source = "creadoEn")
+    @Mapping(target = "id", source = "usuarioDTO.id")
+    @Mapping(target = "nombre", source = "usuarioDTO.nombre")
+    @Mapping(target = "correo", source = "usuarioDTO.correo")
+    @Mapping(target = "edad", source = "usuarioDTO.edad")
+    @Mapping(target = "creadoEn", source = "usuarioDTO.creadoEn")
     Usuario mapUsuarioDTOToUsuario(UsuarioDTO usuarioDTO);
     
-    List<Usuario> mapListUsuarioDTOToUsuario(List<Usuario> listaUsuarioDTO);
+    List<Usuario> mapListUsuarioDTOToUsuario(List<UsuarioDTO> listaUsuarioDTO);
 }

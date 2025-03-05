@@ -1,7 +1,5 @@
 package com.example.myPorra.model;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 @Getter
 @Setter
 public class Usuario {
@@ -23,16 +21,17 @@ public class Usuario {
 	@SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_seq", allocationSize = 1)
 	private Long id;
 
-	@Column(name = "nombre", nullable = false, length = 100)
+	@Column(name = "nombre", nullable = false, length = 255)
 	private String nombre;
+	
+	@Column(name = "alias", nullable = false, length = 255, unique = true)
+	private String alias;
 
 	@Column(name = "correo", nullable = false, length = 150, unique = true)
 	private String correo;
 
-	@Column(name = "edad")
-	private Integer edad;
+	@Column(name = "nombre", nullable = false)
+	private Integer puntacion;
 
-	@Column(name = "creado_en", nullable = false, updatable = false)
-	private LocalDateTime creadoEn;
 
 }
