@@ -30,8 +30,8 @@ public class Usuario {
 	@Column(name = "correo", nullable = false, length = 150, unique = true)
 	private String correo;
 
-	@Column(name = "nombre", nullable = false)
-	private Integer puntacion;
+	@Column(name = "puntuacion", nullable = true)
+	private Integer puntuacion;
 
 
 }

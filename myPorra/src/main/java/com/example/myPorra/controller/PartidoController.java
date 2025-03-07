@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myPorra.dto.TorneoDTO;
-import com.example.myPorra.service.TorneoService;
+import com.example.myPorra.dto.PartidoDTO;
+import com.example.myPorra.service.PartidoService;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @RestController
-@RequestMapping("/api/torneo")
+@RequestMapping("/api/partido")
 @Getter
 @Setter
 public class PartidoController {
 
 	@Autowired
-	private TorneoService torneoService;
+	private PartidoService partidoService;
 
 	@GetMapping
-	public List<TorneoDTO> findByAll() {
-		return this.torneoService.findAll();
+	public List<PartidoDTO> findByAll() {
+		return this.partidoService.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public TorneoDTO findById(@PathVariable Long id) {
-		return this.torneoService.findById(id);
+	public PartidoDTO findById(@PathVariable Long id) {
+		return this.partidoService.findById(id);
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public TorneoDTO crear(@RequestBody TorneoDTO usuario) {
-		return this.torneoService.guardar(usuario);
+	public PartidoDTO crear(@RequestBody PartidoDTO partido) {
+		return this.partidoService.guardar(partido);
 	}
 
 	@DeleteMapping("/{id}")
 	public void eliminar(@PathVariable Long id) {
-		this.torneoService.eliminar(id);
+		this.partidoService.eliminar(id);
 	}
 }

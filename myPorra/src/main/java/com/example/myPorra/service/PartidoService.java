@@ -10,12 +10,16 @@ import com.example.myPorra.basic.service.PartidoBasicService;
 import com.example.myPorra.dto.PartidoDTO;
 import com.example.myPorra.mapper.PartidoMapper;
 import com.example.myPorra.model.Partido;
+import com.example.myPorra.repository.EquipoRepository;
 
 @Service
 public class PartidoService {
 
 	@Autowired
 	private PartidoBasicService partidoBasicService;
+
+	@Autowired
+	private EquipoRepository equipoRepository;
 
 	@Autowired
 	private PartidoMapper partidoMapper;
@@ -25,13 +29,15 @@ public class PartidoService {
 	}
 
 	public PartidoDTO findById(Long id) {
-		Optional<Partido> usuarioOptional = this.partidoBasicService.findById(id);
-		return usuarioOptional.map(this.partidoMapper::mapPartidoToPartidoDTO).orElse(null);
+		Optional<Partido> partido = this.partidoBasicService.findById(id);
+		return this.partidoMapper.mapPartidoToPartidoDTO(
+				partido.orElseThrow(() -> new IllegalArgumentException("No se encontró el partido con ID: " + id)));
 	}
 
-	public PartidoDTO guardar(PartidoDTO usuarioDto) {
-		Partido entity = this.partidoMapper.mapPartidoDTOToPartido(usuarioDto);
-		return this.partidoMapper.mapPartidoToPartidoDTO(this.partidoBasicService.guardar(entity));
+	public PartidoDTO guardar(PartidoDTO partidoDto) {
+		Partido entity = this.partidoMapper.mapPartidoDTOToPartido(partidoDto, equipoRepository);
+		entity = this.partidoBasicService.guardar(entity);
+		return this.findById(entity.getId());
 	}
 
 	public void eliminar(Long id) {

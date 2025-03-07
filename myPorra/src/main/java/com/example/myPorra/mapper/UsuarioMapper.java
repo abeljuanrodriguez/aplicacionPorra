@@ -17,8 +17,8 @@ public interface UsuarioMapper {
     @Mapping(target = "id", source = "usuario.id")
     @Mapping(target = "nombre", source = "usuario.nombre")
     @Mapping(target = "correo", source = "usuario.correo")
-    @Mapping(target = "edad", source = "usuario.edad")
-    @Mapping(target = "creadoEn", source = "usuarioDTO.creadoEn")
+    @Mapping(target = "alias", source = "usuario.alias")
+    @Mapping(target = "puntuacion", source = "usuario.puntuacion")
     UsuarioDTO mapUsuarioToUsuarioDTO(Usuario usuario);
     
     List<UsuarioDTO> mapListUsuarioToUsuarioDTO(List<Usuario> listaUsuarios);
@@ -26,8 +26,8 @@ public interface UsuarioMapper {
     @Mapping(target = "id", source = "usuarioDTO.id")
     @Mapping(target = "nombre", source = "usuarioDTO.nombre")
     @Mapping(target = "correo", source = "usuarioDTO.correo")
-    @Mapping(target = "edad", source = "usuarioDTO.edad")
-    @Mapping(target = "creadoEn", source = "usuarioDTO.creadoEn")
+    @Mapping(target = "alias", source = "usuarioDTO.alias")
+    @Mapping(target = "puntuacion", source = "usuarioDTO.puntuacion")
     Usuario mapUsuarioDTOToUsuario(UsuarioDTO usuarioDTO);
     
     List<Usuario> mapListUsuarioDTOToUsuario(List<UsuarioDTO> listaUsuarioDTO);
