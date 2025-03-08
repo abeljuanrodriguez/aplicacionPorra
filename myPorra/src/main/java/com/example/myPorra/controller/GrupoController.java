@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.myPorra.dto.GrupoDTO;
 import com.example.myPorra.service.GrupoService;
 
+import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,7 +41,7 @@ public class GrupoController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public GrupoDTO crear(@RequestBody GrupoDTO grupo) {
+	public GrupoDTO crear(@Valid @RequestBody GrupoDTO grupo) {
 		return this.grupoService.guardar(grupo);
 	}
 

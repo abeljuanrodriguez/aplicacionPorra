@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.myPorra.model.Grupo;
-import com.example.myPorra.model.Usuario;
 import com.example.myPorra.repository.GrupoRepository;
-import com.example.myPorra.repository.UsuarioRepository;
 
 @Service
 public class GrupoBasicService {

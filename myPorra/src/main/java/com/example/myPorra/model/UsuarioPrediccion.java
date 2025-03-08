@@ -1,7 +1,5 @@
 package com.example.myPorra.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,35 +13,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "partido")
+@Table(name = "usuario_prediccion")
 @Getter
 @Setter
-public class Partido {
+public class UsuarioPrediccion {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "partido_seq")
-	@SequenceGenerator(name = "partido_seq", sequenceName = "partido_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_prediccion_seq")
+	@SequenceGenerator(name = "usuario_prediccion_seq", sequenceName = "usuario_prediccion_seq", allocationSize = 1)
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_equipo1", nullable = false)
-	private Equipo equipo1;
+	@JoinColumn(name = "id_usuario", nullable = false)
+	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn(name = "id_equipo2", nullable = false)
-	private Equipo equipo2;
-
-	@Column(name = "fecha")
-	private LocalDate fecha;
+	@JoinColumn(name = "id_partido", nullable = false)
+	private Partido partido;
 
 	@Column(name = "gfEquipo1")
 	private Integer gfEquipo1;
 
 	@Column(name = "gfEquipo2")
 	private Integer gfEquipo2;
-
-	@Column(name = "jugado")
-	private Boolean isJugado;
 
 	@Column(name = "ganador")
 	private EnumGanador ganador;

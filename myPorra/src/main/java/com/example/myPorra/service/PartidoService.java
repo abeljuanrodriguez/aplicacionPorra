@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.myPorra.basic.service.PartidoBasicService;
 import com.example.myPorra.dto.PartidoDTO;
 import com.example.myPorra.mapper.PartidoMapper;
+import com.example.myPorra.model.EnumGanador;
 import com.example.myPorra.model.Partido;
 import com.example.myPorra.repository.EquipoRepository;
 
@@ -36,8 +37,14 @@ public class PartidoService {
 
 	public PartidoDTO guardar(PartidoDTO partidoDto) {
 		Partido entity = this.partidoMapper.mapPartidoDTOToPartido(partidoDto, equipoRepository);
-		entity = this.partidoBasicService.guardar(entity);
+		entity = this.partidoBasicService.guardar(this.calcularGanadorEncuentro(entity));
 		return this.findById(entity.getId());
+	}
+
+	public Partido calcularGanadorEncuentro(Partido entity) {
+		EnumGanador ganador = EnumGanador.calcularGanador(entity.getGfEquipo1(), entity.getGfEquipo2());
+		entity.setGanador(ganador);
+		return entity;
 	}
 
 	public void eliminar(Long id) {

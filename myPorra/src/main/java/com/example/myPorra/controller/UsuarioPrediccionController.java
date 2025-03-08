@@ -13,40 +13,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myPorra.dto.PartidoDTO;
-import com.example.myPorra.service.PartidoService;
+import com.example.myPorra.dto.UsuarioPrediccionDTO;
+import com.example.myPorra.service.UsuarioPrediccionService;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
 @RestController
-@RequestMapping("/api/partido")
+@RequestMapping("/api/usuarioPrediccion")
 @Getter
 @Setter
-public class PartidoController {
+public class UsuarioPrediccionController {
 
 	@Autowired
-	private PartidoService partidoService;
+	private UsuarioPrediccionService usuarioPrediccionService;
 
 	@GetMapping
-	public List<PartidoDTO> findByAll() {
-		return this.partidoService.findAll();
+	public List<UsuarioPrediccionDTO> findByAll() {
+		return this.usuarioPrediccionService.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public PartidoDTO findById(@PathVariable Long id) {
-		return this.partidoService.findById(id);
+	public UsuarioPrediccionDTO findById(@PathVariable Long id) {
+		return this.usuarioPrediccionService.findById(id);
+	}
+	
+	@GetMapping("/findByIdUsuario/{idUsuario}")
+	public List<UsuarioPrediccionDTO> findByIdUsuario(@PathVariable Long idUsuario) {
+		return this.usuarioPrediccionService.findByIdUsuario(idUsuario);
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public PartidoDTO crear(@Valid @RequestBody PartidoDTO partido) {
-		return this.partidoService.guardar(partido);
+	public UsuarioPrediccionDTO crear(@Valid @RequestBody UsuarioPrediccionDTO usuarioPrediccion) {
+		return this.usuarioPrediccionService.guardar(usuarioPrediccion);
 	}
 
 	@DeleteMapping("/{id}")
 	public void eliminar(@PathVariable Long id) {
-		this.partidoService.eliminar(id);
+		this.usuarioPrediccionService.eliminar(id);
 	}
+	
 }

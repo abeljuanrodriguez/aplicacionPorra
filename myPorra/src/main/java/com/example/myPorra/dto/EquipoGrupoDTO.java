@@ -1,12 +1,20 @@
 package com.example.myPorra.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EquipoGrupoDTO {
+	
 	private Long id;
+	
+	@NotBlank(message = "El equipo no puede estar vacío")
 	private Long idEquipo;
+	
+	@NotBlank(message = "El grupo no puede estar vacío")
 	private Long idGrupo;
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.myPorra.dto.TorneoDTO;
 import com.example.myPorra.service.TorneoService;
 
+import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,7 +41,7 @@ public class TorneoController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public TorneoDTO crear(@RequestBody TorneoDTO usuario) {
+	public TorneoDTO crear(@Valid @RequestBody TorneoDTO usuario) {
 		return this.torneoService.guardar(usuario);
 	}
 
