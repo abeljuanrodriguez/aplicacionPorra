@@ -39,6 +39,11 @@ public class EquipoController {
 		return this.equipoService.findById(id);
 	}
 
+	@GetMapping("/{nombre}")
+	public EquipoDTO findByNombre(@PathVariable String nombre) {
+		return this.equipoService.findByNombre(nombre);
+	}
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public EquipoDTO crear(@Valid @RequestBody EquipoDTO usuario) {

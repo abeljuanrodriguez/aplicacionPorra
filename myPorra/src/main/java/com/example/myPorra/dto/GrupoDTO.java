@@ -10,10 +10,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class GrupoDTO {
-	
-    private Long id;
-    
-    @NotBlank(message = "El nombre no puede estar vacío")
+
+	private Long id;
+
+	@NotBlank(message = "El nombre no puede estar vacío")
 	@Size(max = 255, message = "El nombre no puede superar los 255 caracteres")
-    private String nombre;
+	private String nombre;
+
+	public GrupoDTO(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+
 }

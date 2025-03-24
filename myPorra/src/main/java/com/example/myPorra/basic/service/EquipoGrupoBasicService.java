@@ -26,6 +26,10 @@ public class EquipoGrupoBasicService {
     public EquipoGrupo guardar(EquipoGrupo equipoGrupo) {
         return equipoGrupoRepository.save(equipoGrupo);
     }
+    
+    public List<EquipoGrupo> guardar(List<EquipoGrupo> equipoGrupo) {
+        return equipoGrupoRepository.saveAll(equipoGrupo);
+    }
 
     public void eliminar(Long id) {
     	equipoGrupoRepository.deleteById(id);

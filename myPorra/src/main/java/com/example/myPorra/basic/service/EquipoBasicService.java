@@ -30,4 +30,8 @@ public class EquipoBasicService {
     public void eliminar(Long id) {
     	equipoRepository.deleteById(id);
     }
+
+	public Optional<Equipo> findByNombre(String nombre) {
+		return equipoRepository.findByNombre(nombre.toUpperCase());
+	}
 }

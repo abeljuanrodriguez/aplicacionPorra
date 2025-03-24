@@ -11,15 +11,17 @@ import com.example.myPorra.dto.GrupoDTO;
 import com.example.myPorra.mapper.GrupoMapper;
 import com.example.myPorra.model.Grupo;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class GrupoService {
 
-	@Autowired
-	private GrupoBasicService grupoBasicService;
+	private final GrupoBasicService grupoBasicService;
 
-	@Autowired
-	private GrupoMapper grupoMapper;
-
+	private final GrupoMapper grupoMapper;
+	
 	public List<GrupoDTO> findAll() {
 		return this.grupoMapper.mapListGrupoToGrupoDTO(this.grupoBasicService.findAll());
 	}

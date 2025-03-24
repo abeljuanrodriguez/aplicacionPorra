@@ -1,5 +1,6 @@
 package com.example.myPorra.mapper;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.mapstruct.Context;
@@ -9,6 +10,7 @@ import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 import com.example.myPorra.dto.EquipoGrupoDTO;
+import com.example.myPorra.dto.EquipoGrupoPartidoDTO;
 import com.example.myPorra.model.Equipo;
 import com.example.myPorra.model.EquipoGrupo;
 import com.example.myPorra.model.Grupo;
@@ -47,5 +49,7 @@ public interface EquipoGrupoMapper {
 	    return grupoRepository.findById(id).orElseThrow(() -> 
 	        new IllegalArgumentException("Equipo no encontrado con ID: " + id));
 	}
+    
+	List<EquipoGrupoPartidoDTO> mapListEquipoGrupoToEquipoGrupoPartidoDTO(List<EquipoGrupo> lista);
 
 }

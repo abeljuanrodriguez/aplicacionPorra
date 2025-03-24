@@ -7,11 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.myPorra.basic.service.PartidoBasicService;
+import com.example.myPorra.dto.GrupoDTO;
 import com.example.myPorra.dto.PartidoDTO;
+import com.example.myPorra.dto.PartidoDetalladoDTO;
 import com.example.myPorra.mapper.PartidoMapper;
 import com.example.myPorra.model.EnumGanador;
+import com.example.myPorra.model.Grupo;
 import com.example.myPorra.model.Partido;
 import com.example.myPorra.repository.EquipoRepository;
+import com.example.myPorra.repository.GrupoRepository;
 
 @Service
 public class PartidoService {
@@ -21,6 +25,9 @@ public class PartidoService {
 
 	@Autowired
 	private EquipoRepository equipoRepository;
+	
+	@Autowired
+	private GrupoRepository grupoRepository;
 
 	@Autowired
 	private PartidoMapper partidoMapper;
@@ -34,9 +41,14 @@ public class PartidoService {
 		return this.partidoMapper.mapPartidoToPartidoDTO(
 				partido.orElseThrow(() -> new IllegalArgumentException("No se encontró el partido con ID: " + id)));
 	}
+	
+	public List<PartidoDetalladoDTO> findByIdGrupo(Long idGrupo) {
+		List<Partido> partido = this.partidoBasicService.findByIdGrupo(idGrupo);
+		return this.partidoMapper.mapListPartidoToPartidoDetalladoDTO(partido);
+	}
 
 	public PartidoDTO guardar(PartidoDTO partidoDto) {
-		Partido entity = this.partidoMapper.mapPartidoDTOToPartido(partidoDto, equipoRepository);
+		Partido entity = this.partidoMapper.mapPartidoDTOToPartido(partidoDto, equipoRepository, grupoRepository);
 		entity = this.partidoBasicService.guardar(this.calcularGanadorEncuentro(entity));
 		return this.findById(entity.getId());
 	}

@@ -41,6 +41,11 @@ public class EquipoGrupoService {
 		EquipoGrupo entity = this.equipoGrupoMapper.mapEquipoGrupoDTOToEquipoGrupo(equipoGrupoDto,equipoRepository,grupoRepository);
 		return this.equipoGrupoMapper.mapEquipoGrupoToEquipoGrupoDTO(this.equipoGrupoBasicService.guardar(entity));
 	}
+	
+	public List<EquipoGrupoDTO> guardar(List<EquipoGrupoDTO> equipoGrupoDto) {
+		List<EquipoGrupo> entity = this.equipoGrupoMapper.mapListEquipoGrupoDTOToEquipoGrupo(equipoGrupoDto);
+		return this.equipoGrupoMapper.mapListEquipoGrupoToEquipoGrupoDTO(this.equipoGrupoBasicService.guardar(entity));
+	}
 
 	public void eliminar(Long id) {
 		this.equipoGrupoBasicService.eliminar(id);

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myPorra.dto.PartidoDTO;
+import com.example.myPorra.dto.PartidoDetalladoDTO;
 import com.example.myPorra.service.PartidoService;
 
 import jakarta.validation.Valid;
@@ -37,6 +38,11 @@ public class PartidoController {
 	@GetMapping("/{id}")
 	public PartidoDTO findById(@PathVariable Long id) {
 		return this.partidoService.findById(id);
+	}
+		
+	@GetMapping("/findByIdGrupo/{idGrupo}")
+	public List<PartidoDetalladoDTO> findByIdGrupo(@PathVariable Long idGrupo) {
+		return this.partidoService.findByIdGrupo(idGrupo);
 	}
 
 	@PostMapping

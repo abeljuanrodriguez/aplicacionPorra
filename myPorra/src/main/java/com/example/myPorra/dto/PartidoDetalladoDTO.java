@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PartidoDTO {
+public class PartidoDetalladoDTO {
 
 	private Long id;
 
@@ -22,7 +22,7 @@ public class PartidoDTO {
 	@NotBlank(message = "El nombre no puede estar vacío")
 	@Size(max = 255, message = "El nombre no puede superar los 255 caracteres")
 	private Long idEquipo2;
-	
+
 	private Long idGrupo;
 
 	private LocalDate fecha;
@@ -32,6 +32,13 @@ public class PartidoDTO {
 	private Integer gfEquipo2;
 
 	private Boolean isJugado;
+
+	public String nombreEquipo1;
 	
+	public String nombreEquipo2;
+	
+	public String flagEquipo1;
+	
+	public String flagEquipo2;
 
 }

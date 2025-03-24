@@ -9,12 +9,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EquipoGrupoDTO {
-	
+
 	private Long id;
-	
+
 	@NotBlank(message = "El equipo no puede estar vacío")
 	private Long idEquipo;
-	
+
 	@NotBlank(message = "El grupo no puede estar vacío")
 	private Long idGrupo;
+
+	public EquipoGrupoDTO(Long idEquipo, Long idGrupo) {
+		super();
+		this.idEquipo = idEquipo;
+		this.idGrupo = idGrupo;
+	}
+
 }

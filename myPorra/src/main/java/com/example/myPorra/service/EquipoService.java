@@ -25,8 +25,13 @@ public class EquipoService {
 	}
 
 	public EquipoDTO findById(Long id) {
-		Optional<Equipo> usuarioOptional = this.equipoBasicService.findById(id);
-		return usuarioOptional.map(this.equipoMapper::mapEquipoToEquipoDTO).orElse(null);
+		Optional<Equipo> equipoOptional = this.equipoBasicService.findById(id);
+		return equipoOptional.map(this.equipoMapper::mapEquipoToEquipoDTO).orElse(null);
+	}
+	
+	public EquipoDTO findByNombre(String nombre) {
+		Optional<Equipo> equipoOptional = this.equipoBasicService.findByNombre(nombre);
+		return equipoOptional.map(this.equipoMapper::mapEquipoToEquipoDTO).orElse(null);
 	}
 
 	public EquipoDTO guardar(EquipoDTO usuarioDto) {

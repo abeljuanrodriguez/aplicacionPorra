@@ -23,11 +23,15 @@ public class PartidoBasicService {
     	return partidoRepository.findById(id);
     }
 
-    public Partido guardar(Partido equipo) {
-        return partidoRepository.save(equipo);
+    public Partido guardar(Partido partido) {
+        return partidoRepository.save(partido);
     }
 
     public void eliminar(Long id) {
     	partidoRepository.deleteById(id);
     }
+
+	public List<Partido> findByIdGrupo(Long idGrupo) {
+		return partidoRepository.findByIdGrupo(idGrupo);
+	}
 }

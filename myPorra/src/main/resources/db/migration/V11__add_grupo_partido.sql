@@ -1,0 +1,7 @@
+-- Crear una secuencia
+ALTER TABLE PARTIDO ADD ID_GRUPO int8;
+ALTER TABLE PARTIDO
+    ADD CONSTRAINT fk_partido1
+    FOREIGN KEY (ID_GRUPO)
+    REFERENCES public.grupo(id)
+    ON DELETE CASCADE;
