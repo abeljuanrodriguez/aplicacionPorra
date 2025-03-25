@@ -69,7 +69,6 @@ public interface PartidoMapper {
 	@Mapping(target = "flagEquipo1", source = "partido.equipo1.banderaUrl")
 	@Mapping(target = "flagEquipo2", source = "partido.equipo2.banderaUrl")
 	@Mapping(target = "isJugado", source = "partido.isJugado")
-	@Mapping(target = "resultado", source = "partido.isJugado")
 	PartidoDetalladoDTO mapListPartidoToPartidoDetalladoDTO(Partido partido);
 	
 	List<PartidoDetalladoDTO> mapListPartidoToPartidoDetalladoDTO(List<Partido> partido);
