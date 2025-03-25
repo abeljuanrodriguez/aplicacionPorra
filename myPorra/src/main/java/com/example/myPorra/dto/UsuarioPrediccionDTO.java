@@ -1,6 +1,8 @@
 package com.example.myPorra.dto;
 
 import com.example.myPorra.model.EnumGanador;
+import com.example.myPorra.model.EnumResultado;
+
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,4 +30,7 @@ public class UsuarioPrediccionDTO {
 
     @NotNull(message = "Debe haber un ganador o empate")
     private EnumGanador ganador;
+    
+    @NotNull(message = "Debe haber un ganador o empate")
+    private EnumResultado resultado;
 }

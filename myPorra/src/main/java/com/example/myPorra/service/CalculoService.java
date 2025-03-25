@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.myPorra.basic.service.UsuarioPrediccionBasicService;
 import com.example.myPorra.model.EnumGanador;
+import com.example.myPorra.model.EnumResultado;
 import com.example.myPorra.model.Partido;
 import com.example.myPorra.model.UsuarioPrediccion;
 
@@ -24,6 +25,7 @@ public class CalculoService {
 			Partido partido = usuarioPrediccion.getPartido();
 			if (!resultadoCorrecto(usuarioPrediccion, partido)) {
 				this.ganadorCorrecto(usuarioPrediccion, partido);
+				this.usuarioPrediccionBasicService.guardar(usuarioPrediccion);
 			}
 		}
 
@@ -36,6 +38,7 @@ public class CalculoService {
 		if (partido.getIsJugado() && partido.getGfEquipo1().equals(usuarioPrediccion.getGfEquipo1())
 				&& partido.getGfEquipo2().equals(usuarioPrediccion.getGfEquipo2())) {
 			usuarioPrediccion.getUsuario().setPuntuacion(usuarioPrediccion.getUsuario().getPuntuacion() + 3);
+			usuarioPrediccion.setResultado(EnumResultado.ACIERTO_TOTAL);
 			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;
@@ -47,6 +50,7 @@ public class CalculoService {
 			EnumGanador ganador = EnumGanador.calcularGanador(partido.getGfEquipo1(), partido.getGfEquipo2());
 			if (ganador.equals(usuarioPrediccion.getGanador())) {
 				usuarioPrediccion.getUsuario().setPuntuacion(usuarioPrediccion.getUsuario().getPuntuacion() + 1);
+				usuarioPrediccion.setResultado(EnumResultado.ACIERTO_PARCIAL);
 			}
 		}
 	}

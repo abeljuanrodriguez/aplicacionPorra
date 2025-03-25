@@ -11,6 +11,9 @@ public interface UsuarioPrediccionRepository extends JpaRepository<UsuarioPredic
 
 	@Query("SELECT up FROM UsuarioPrediccion up WHERE up.usuario.id = ?1")
 	List<UsuarioPrediccion> findByIdUsuario(Long idUsuario);
+
+	@Query("SELECT up FROM UsuarioPrediccion up WHERE up.usuario.id = ?1 AND up.partido.id = ?2")
+	UsuarioPrediccion findByIdUsuarioAndIdPartido(Long idUsuario, Long idPartido);
 	
 	
 }

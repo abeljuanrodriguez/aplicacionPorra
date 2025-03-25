@@ -40,9 +40,9 @@ public class PartidoController {
 		return this.partidoService.findById(id);
 	}
 		
-	@GetMapping("/findByIdGrupo/{idGrupo}")
-	public List<PartidoDetalladoDTO> findByIdGrupo(@PathVariable Long idGrupo) {
-		return this.partidoService.findByIdGrupo(idGrupo);
+	@GetMapping("/findByIdGrupo/{idGrupo}/{idUsuario}")
+	public List<PartidoDetalladoDTO> findByIdGrupo(@PathVariable Long idGrupo, @PathVariable Long idUsuario) {
+		return this.partidoService.findByIdGrupo(idGrupo, idUsuario);
 	}
 
 	@PostMapping

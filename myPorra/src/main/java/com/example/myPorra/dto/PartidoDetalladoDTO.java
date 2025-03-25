@@ -2,6 +2,8 @@ package com.example.myPorra.dto;
 
 import java.time.LocalDate;
 
+import com.example.myPorra.model.EnumResultado;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -32,6 +34,8 @@ public class PartidoDetalladoDTO {
 	private Integer gfEquipo2;
 
 	private Boolean isJugado;
+	
+	private EnumResultado resultado;
 
 	public String nombreEquipo1;
 	

@@ -18,6 +18,10 @@ public class UsuarioBasicService {
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
+    
+    public List<Usuario> findResultados() {
+        return usuarioRepository.findResultados();
+    }
 
     public Optional<Usuario> findById(Long id) {
     	return usuarioRepository.findById(id);

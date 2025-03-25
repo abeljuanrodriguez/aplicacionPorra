@@ -34,4 +34,8 @@ public class UsuarioPrediccionBasicService {
 	public List<UsuarioPrediccion> findByIdUsuario(Long idUsuario) {
 		return usuarioPrediccionRepository.findByIdUsuario(idUsuario) ;
 	}
+
+	public UsuarioPrediccion findByIdUsuarioAndIdPartido(Long idUsuario, Long idPartido) {
+		return usuarioPrediccionRepository.findByIdUsuarioAndIdPartido(idUsuario, idPartido) ;
+	}
 }

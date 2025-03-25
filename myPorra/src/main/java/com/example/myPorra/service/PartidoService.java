@@ -1,5 +1,6 @@
 package com.example.myPorra.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.myPorra.basic.service.PartidoBasicService;
-import com.example.myPorra.dto.GrupoDTO;
 import com.example.myPorra.dto.PartidoDTO;
 import com.example.myPorra.dto.PartidoDetalladoDTO;
+import com.example.myPorra.dto.UsuarioPrediccionDTO;
 import com.example.myPorra.mapper.PartidoMapper;
 import com.example.myPorra.model.EnumGanador;
-import com.example.myPorra.model.Grupo;
 import com.example.myPorra.model.Partido;
 import com.example.myPorra.repository.EquipoRepository;
 import com.example.myPorra.repository.GrupoRepository;
@@ -24,8 +24,11 @@ public class PartidoService {
 	private PartidoBasicService partidoBasicService;
 
 	@Autowired
+	private UsuarioPrediccionService prediccionService;
+
+	@Autowired
 	private EquipoRepository equipoRepository;
-	
+
 	@Autowired
 	private GrupoRepository grupoRepository;
 
@@ -41,10 +44,16 @@ public class PartidoService {
 		return this.partidoMapper.mapPartidoToPartidoDTO(
 				partido.orElseThrow(() -> new IllegalArgumentException("No se encontró el partido con ID: " + id)));
 	}
-	
-	public List<PartidoDetalladoDTO> findByIdGrupo(Long idGrupo) {
-		List<Partido> partido = this.partidoBasicService.findByIdGrupo(idGrupo);
-		return this.partidoMapper.mapListPartidoToPartidoDetalladoDTO(partido);
+
+	public List<PartidoDetalladoDTO> findByIdGrupo(Long idGrupo, Long idUsuario) {
+		List<Partido> listaPartidos = this.partidoBasicService.findByIdGrupo(idGrupo);
+		List<PartidoDetalladoDTO> partidoDetallado = new ArrayList<PartidoDetalladoDTO>();
+		for (Partido partido : listaPartidos) {
+			UsuarioPrediccionDTO prediccion = this.prediccionService.findByIdUsuarioAndIdPartido(idGrupo, idUsuario);
+			partidoDetallado.add(this.partidoMapper.mapPartidoToPartidoDetalladoDTO(partido, prediccion));
+		}
+		
+		return partidoDetallado;
 	}
 
 	public PartidoDTO guardar(PartidoDTO partidoDto) {

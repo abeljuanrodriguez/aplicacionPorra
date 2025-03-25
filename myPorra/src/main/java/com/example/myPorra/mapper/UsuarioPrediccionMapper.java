@@ -25,6 +25,7 @@ public interface UsuarioPrediccionMapper {
 	@Mapping(target = "idPartido", source = "usuarioPrediccion.partido.id")
 	@Mapping(target = "gfEquipo1", source = "usuarioPrediccion.gfEquipo1")
 	@Mapping(target = "gfEquipo2", source = "usuarioPrediccion.gfEquipo2")
+	@Mapping(target = "resultado", source = "usuarioPrediccion.resultado")
 	UsuarioPrediccionDTO mapUsuarioPrediccionToUsuarioPrediccionDTO(UsuarioPrediccion usuarioPrediccion);
 
 	List<UsuarioPrediccionDTO> mapListUsuarioPrediccionToUsuarioPrediccionDTO(
@@ -35,6 +36,7 @@ public interface UsuarioPrediccionMapper {
 	@Mapping(target = "partido", source = "usuarioPrediccionDTO.idPartido", qualifiedByName = "idToPartido")
 	@Mapping(target = "gfEquipo1", source = "usuarioPrediccionDTO.gfEquipo1")
 	@Mapping(target = "gfEquipo2", source = "usuarioPrediccionDTO.gfEquipo2")
+	@Mapping(target = "resultado", source = "usuarioPrediccionDTO.resultado")
 	UsuarioPrediccion mapUsuarioPrediccionDTOToUsuarioPrediccion(UsuarioPrediccionDTO usuarioPrediccionDTO,
 			@Context UsuarioRepository usuarioRepository, @Context PartidoRepository partidoRepositorio);
 

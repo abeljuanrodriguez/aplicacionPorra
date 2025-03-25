@@ -61,4 +61,9 @@ public class UsuarioPrediccionService {
 		return this.usuarioPrediccionMapper.mapListUsuarioPrediccionToUsuarioPrediccionDTO(
 				this.usuarioPrediccionBasicService.findByIdUsuario(idUsuario));
 	}
+	
+	public UsuarioPrediccionDTO findByIdUsuarioAndIdPartido(Long idUsuario, Long idPartido) {
+		return this.usuarioPrediccionMapper.mapUsuarioPrediccionToUsuarioPrediccionDTO(
+				this.usuarioPrediccionBasicService.findByIdUsuarioAndIdPartido(idUsuario,idPartido));
+	}
 }
