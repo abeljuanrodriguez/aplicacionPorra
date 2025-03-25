@@ -49,7 +49,7 @@ public class PartidoService {
 		List<Partido> listaPartidos = this.partidoBasicService.findByIdGrupo(idGrupo);
 		List<PartidoDetalladoDTO> partidoDetallado = new ArrayList<PartidoDetalladoDTO>();
 		for (Partido partido : listaPartidos) {
-			UsuarioPrediccionDTO prediccion = this.prediccionService.findByIdUsuarioAndIdPartido(idGrupo, idUsuario);
+			UsuarioPrediccionDTO prediccion = this.prediccionService.findByIdUsuarioAndIdPartido(idUsuario, partido.getId());
 			partidoDetallado.add(this.partidoMapper.mapPartidoToPartidoDetalladoDTO(partido, prediccion));
 		}
 		
