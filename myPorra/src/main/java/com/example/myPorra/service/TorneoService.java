@@ -11,11 +11,14 @@ import com.example.myPorra.dto.TorneoDTO;
 import com.example.myPorra.mapper.TorneoMapper;
 import com.example.myPorra.model.Torneo;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class TorneoService {
 
 	@Autowired
-	private TorneoBasicService torneoBasicService;
+	private final TorneoBasicService torneoBasicService;
 
 	@Autowired
 	private TorneoMapper torneoMapper;

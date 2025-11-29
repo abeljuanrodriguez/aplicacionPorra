@@ -3,7 +3,6 @@ package com.example.myPorra.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.myPorra.basic.service.EquipoBasicService;
@@ -11,22 +10,23 @@ import com.example.myPorra.dto.EquipoDTO;
 import com.example.myPorra.mapper.EquipoMapper;
 import com.example.myPorra.model.Equipo;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class EquipoService {
+	
+	private final EquipoBasicService equipoBasicService;
 
-	@Autowired
-	private EquipoBasicService equipoBasicService;
-
-	@Autowired
-	private EquipoMapper equipoMapper;
+	private final EquipoMapper equipoMapper;
 
 	public List<EquipoDTO> findAll() {
 		return this.equipoMapper.mapListEquipoToEquipoDTO(this.equipoBasicService.findAll());
 	}
 
 	public EquipoDTO findById(Long id) {
-		Optional<Equipo> equipoOptional = this.equipoBasicService.findById(id);
-		return equipoOptional.map(this.equipoMapper::mapEquipoToEquipoDTO).orElse(null);
+		Equipo equipo = this.equipoBasicService.findById(id);
+		return this.equipoMapper.mapEquipoToEquipoDTO(equipo);
 	}
 	
 	public EquipoDTO findByNombre(String nombre) {

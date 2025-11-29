@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.example.myPorra.model.Equipo;
 
+
 public interface EquipoRepository extends JpaRepository<Equipo, Long> {
 
 	@Query("SELECT eq FROM Equipo eq WHERE UPPER(eq.nombre) = ?1")

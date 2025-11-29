@@ -26,32 +26,32 @@ import lombok.Setter;
 @Setter
 public class EquipoGrupoController {
 
-	@Autowired
-	private EquipoGrupoService equipoGrupoService;
+    @Autowired
+    private EquipoGrupoService equipoGrupoService;
 
-	@GetMapping
-	public List<EquipoGrupoDTO> findByAll() {
-		return this.equipoGrupoService.findAll();
-	}
-	
-	@GetMapping("/findByIdGrupo/{idGrupo}")
-	public List<EquipoGrupoDTO> findByIdGrupo(@PathVariable Long idGrupo) {
-		return this.equipoGrupoService.findByIdGrupo(idGrupo);
-	}
+    @GetMapping
+    public List<EquipoGrupoDTO> findByAll() {
+        return this.equipoGrupoService.findAll();
+    }
 
-	@GetMapping("/{id}")
-	public EquipoGrupoDTO findById(@PathVariable Long id) {
-		return this.equipoGrupoService.findById(id);
-	}
+    @GetMapping("/findByIdGrupo/{idGrupo}")
+    public List<EquipoGrupoDTO> findByIdGrupo(@PathVariable Long idGrupo) {
+        return this.equipoGrupoService.findByIdGrupo(idGrupo);
+    }
 
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public EquipoGrupoDTO crear(@Valid @RequestBody EquipoGrupoDTO usuario) {
-		return this.equipoGrupoService.guardar(usuario);
-	}
+    @GetMapping("/{id}")
+    public EquipoGrupoDTO findById(@PathVariable Long id) {
+        return this.equipoGrupoService.findById(id);
+    }
 
-	@DeleteMapping("/{id}")
-	public void eliminar(@PathVariable Long id) {
-		this.equipoGrupoService.eliminar(id);
-	}
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public EquipoGrupoDTO crear(@Valid @RequestBody EquipoGrupoDTO usuario) {
+        return this.equipoGrupoService.guardar(usuario);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        this.equipoGrupoService.eliminar(id);
+    }
 }

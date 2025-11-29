@@ -3,6 +3,7 @@ package com.example.myPorra.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.myPorra.repository.TorneoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,25 +19,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GrupoService {
 
-	private final GrupoBasicService grupoBasicService;
+    private final GrupoBasicService grupoBasicService;
 
-	private final GrupoMapper grupoMapper;
-	
-	public List<GrupoDTO> findAll() {
-		return this.grupoMapper.mapListGrupoToGrupoDTO(this.grupoBasicService.findAll());
-	}
+    private final TorneoRepository torneoRepository;
 
-	public GrupoDTO findById(Long id) {
-		Optional<Grupo> grupoOptional = this.grupoBasicService.findById(id);
-		return grupoOptional.map(this.grupoMapper::mapGrupoToGrupoDTO).orElse(null);
-	}
+    private final GrupoMapper grupoMapper;
 
-	public GrupoDTO guardar(GrupoDTO grupoDto) {
-		Grupo entity = this.grupoMapper.mapGrupoDTOToGrupo(grupoDto);
-		return this.grupoMapper.mapGrupoToGrupoDTO(this.grupoBasicService.guardar(entity));
-	}
+    public List<GrupoDTO> findAll() {
+        return this.grupoMapper.mapListGrupoToGrupoDTO(this.grupoBasicService.findAll());
+    }
 
-	public void eliminar(Long id) {
-		this.grupoBasicService.eliminar(id);
-	}
+    public GrupoDTO findById(Long id) {
+        Optional<Grupo> grupoOptional = this.grupoBasicService.findById(id);
+        return grupoOptional.map(this.grupoMapper::mapGrupoToGrupoDTO).orElse(null);
+    }
+
+    public GrupoDTO guardar(GrupoDTO grupoDto) {
+        Grupo entity = this.grupoMapper.mapGrupoDTOToGrupo(grupoDto, torneoRepository);
+        return this.grupoMapper.mapGrupoToGrupoDTO(this.grupoBasicService.guardar(entity));
+    }
+
+    public void eliminar(Long id) {
+        this.grupoBasicService.eliminar(id);
+    }
+
+    public List<GrupoDTO> findByIdTorneo(Long idTorneo) {
+        List<Grupo> gruposTorneo = this.grupoBasicService.findByIdTorneo(idTorneo);
+        return this.grupoMapper.mapListGrupoToGrupoDTO(gruposTorneo);
+    }
 }

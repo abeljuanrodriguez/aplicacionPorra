@@ -1,12 +1,6 @@
 package com.example.myPorra.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,5 +17,9 @@ public class Grupo {
 
 	@Column(name = "nombre", nullable = false, length = 255)
 	private String nombre;
+
+    @ManyToOne
+    @JoinColumn(name = "id_torneo", nullable = false)
+    private Torneo torneo;
 	
 }

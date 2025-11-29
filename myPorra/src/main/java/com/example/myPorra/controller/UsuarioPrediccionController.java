@@ -14,20 +14,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myPorra.dto.UsuarioPrediccionDTO;
+import com.example.myPorra.repository.TorneoRepository;
 import com.example.myPorra.service.UsuarioPrediccionService;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @RestController
 @RequestMapping("/api/usuarioPrediccion")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class UsuarioPrediccionController {
 
-	@Autowired
-	private UsuarioPrediccionService usuarioPrediccionService;
+	private final UsuarioPrediccionService usuarioPrediccionService;
 
 	@GetMapping
 	public List<UsuarioPrediccionDTO> findByAll() {
@@ -38,7 +40,7 @@ public class UsuarioPrediccionController {
 	public UsuarioPrediccionDTO findById(@PathVariable Long id) {
 		return this.usuarioPrediccionService.findById(id);
 	}
-	
+
 	@GetMapping("/findByIdUsuario/{idUsuario}")
 	public List<UsuarioPrediccionDTO> findByIdUsuario(@PathVariable Long idUsuario) {
 		return this.usuarioPrediccionService.findByIdUsuario(idUsuario);
@@ -54,5 +56,5 @@ public class UsuarioPrediccionController {
 	public void eliminar(@PathVariable Long id) {
 		this.usuarioPrediccionService.eliminar(id);
 	}
-	
+
 }

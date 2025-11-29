@@ -3,7 +3,6 @@ package com.example.myPorra.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.myPorra.basic.service.UsuarioPrediccionBasicService;
@@ -14,20 +13,19 @@ import com.example.myPorra.model.UsuarioPrediccion;
 import com.example.myPorra.repository.PartidoRepository;
 import com.example.myPorra.repository.UsuarioRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UsuarioPrediccionService {
 
-	@Autowired
-	private UsuarioPrediccionBasicService usuarioPrediccionBasicService;
+	private final UsuarioPrediccionBasicService usuarioPrediccionBasicService;
 
-	@Autowired
-	private PartidoRepository partidoRepository;
+	private final PartidoRepository partidoRepository;
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private final UsuarioRepository usuarioRepository;
 
-	@Autowired
-	private UsuarioPrediccionMapper usuarioPrediccionMapper;
+	private final UsuarioPrediccionMapper usuarioPrediccionMapper;
 
 	public List<UsuarioPrediccionDTO> findAll() {
 		return this.usuarioPrediccionMapper

@@ -15,44 +15,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myPorra.dto.PartidoDTO;
 import com.example.myPorra.dto.PartidoDetalladoDTO;
+import com.example.myPorra.repository.TorneoRepository;
 import com.example.myPorra.service.PartidoService;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @RestController
 @RequestMapping("/api/partido")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class PartidoController {
 
-	@Autowired
-	private PartidoService partidoService;
+    private final PartidoService partidoService;
 
-	@GetMapping
-	public List<PartidoDTO> findByAll() {
-		return this.partidoService.findAll();
-	}
+    @GetMapping
+    public List<PartidoDTO> findByAll() {
+        return this.partidoService.findAll();
+    }
 
-	@GetMapping("/{id}")
-	public PartidoDTO findById(@PathVariable Long id) {
-		return this.partidoService.findById(id);
-	}
-		
-	@GetMapping("/findByIdGrupo/{idGrupo}/{idUsuario}")
-	public List<PartidoDetalladoDTO> findByIdGrupo(@PathVariable Long idGrupo, @PathVariable Long idUsuario) {
-		return this.partidoService.findByIdGrupo(idGrupo, idUsuario);
-	}
+    @GetMapping("/{id}")
+    public PartidoDTO findById(@PathVariable Long id) {
+        return this.partidoService.findById(id);
+    }
 
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public PartidoDTO crear(@Valid @RequestBody PartidoDTO partido) {
-		return this.partidoService.guardar(partido);
-	}
+    @GetMapping("/findByIdGrupo/{idGrupo}/{idUsuario}")
+    public List<PartidoDetalladoDTO> findByIdGrupo(@PathVariable Long idGrupo, @PathVariable Long idUsuario) {
+        return this.partidoService.findByIdGrupo(idGrupo, idUsuario);
+    }
 
-	@DeleteMapping("/{id}")
-	public void eliminar(@PathVariable Long id) {
-		this.partidoService.eliminar(id);
-	}
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public PartidoDTO crear(@Valid @RequestBody PartidoDTO partido) {
+        return this.partidoService.guardar(partido);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        this.partidoService.eliminar(id);
+    }
 }

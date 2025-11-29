@@ -14,20 +14,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myPorra.dto.UsuarioDTO;
+import com.example.myPorra.repository.TorneoRepository;
 import com.example.myPorra.service.UsuarioService;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @RestController
 @RequestMapping("/api/usuarios")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class UsuarioController {
 
-	@Autowired
-	private UsuarioService usuarioService;
+	private final UsuarioService usuarioService;
 
 	@GetMapping
 	public List<UsuarioDTO> findByAll() {

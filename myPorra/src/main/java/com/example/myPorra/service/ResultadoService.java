@@ -9,11 +9,13 @@ import com.example.myPorra.basic.service.UsuarioBasicService;
 import com.example.myPorra.dto.ResultadoDTO;
 import com.example.myPorra.mapper.ResultadoMapper;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ResultadoService {
 
-	@Autowired
-	private UsuarioBasicService usuarioBasicService;
+	private final UsuarioBasicService usuarioBasicService;
 
 	@Autowired
 	private ResultadoMapper resultadoMapper;

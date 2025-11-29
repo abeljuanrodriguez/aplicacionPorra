@@ -14,39 +14,47 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myPorra.dto.GrupoDTO;
+import com.example.myPorra.repository.TorneoRepository;
 import com.example.myPorra.service.GrupoService;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @RestController
 @RequestMapping("/api/grupo")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class GrupoController {
 
-	@Autowired
-	private GrupoService grupoService;
+    private final GrupoService grupoService;
 
-	@GetMapping
-	public List<GrupoDTO> findByAll() {
-		return this.grupoService.findAll();
-	}
+    @GetMapping
+    public List<GrupoDTO> findByAll() {
+        return this.grupoService.findAll();
+    }
 
-	@GetMapping("/{id}")
-	public GrupoDTO findById(@PathVariable Long id) {
-		return this.grupoService.findById(id);
-	}
+    @GetMapping("/{id}")
+    public GrupoDTO findById(@PathVariable Long id) {
+        return this.grupoService.findById(id);
+    }
 
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public GrupoDTO crear(@Valid @RequestBody GrupoDTO grupo) {
-		return this.grupoService.guardar(grupo);
-	}
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public GrupoDTO crear(@Valid @RequestBody GrupoDTO grupo) {
+        return this.grupoService.guardar(grupo);
+    }
 
-	@DeleteMapping("/{id}")
-	public void eliminar(@PathVariable Long id) {
-		this.grupoService.eliminar(id);
-	}
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        this.grupoService.eliminar(id);
+    }
+
+    @GetMapping("/findByIdTorneo/{idTorneo}")
+    public List<GrupoDTO> findByIdTorneo(@PathVariable Long idTorneo) {
+        return this.grupoService.findByIdTorneo(idTorneo);
+    }
+
 }

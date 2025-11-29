@@ -14,20 +14,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myPorra.dto.EquipoDTO;
+import com.example.myPorra.repository.TorneoRepository;
 import com.example.myPorra.service.EquipoService;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @RestController
 @RequestMapping("/api/equipos")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class EquipoController {
 
-	@Autowired
-	private EquipoService equipoService;
+	private final EquipoService equipoService;
 
 	@GetMapping
 	public List<EquipoDTO> findByAll() {
@@ -43,7 +45,7 @@ public class EquipoController {
 	public EquipoDTO findByNombre(@PathVariable String nombre) {
 		return this.equipoService.findByNombre(nombre);
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public EquipoDTO crear(@Valid @RequestBody EquipoDTO usuario) {

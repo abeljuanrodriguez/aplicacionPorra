@@ -11,7 +11,10 @@ import com.example.myPorra.dto.UsuarioDTO;
 import com.example.myPorra.mapper.UsuarioMapper;
 import com.example.myPorra.model.Usuario;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
 
 	@Autowired

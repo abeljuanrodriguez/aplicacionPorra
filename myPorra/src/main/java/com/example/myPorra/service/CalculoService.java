@@ -10,12 +10,15 @@ import com.example.myPorra.model.EnumGanador;
 import com.example.myPorra.model.EnumResultado;
 import com.example.myPorra.model.Partido;
 import com.example.myPorra.model.UsuarioPrediccion;
+import com.example.myPorra.repository.TorneoRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class CalculoService {
 
-	@Autowired
-	private UsuarioPrediccionBasicService usuarioPrediccionBasicService;
+	private final UsuarioPrediccionBasicService usuarioPrediccionBasicService;
 
 	public void calcular() {
 
